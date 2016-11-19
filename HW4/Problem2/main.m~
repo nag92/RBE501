@@ -6,16 +6,7 @@ clear all;
 close all;
 clc;
 t = 1;
-m1 = .05;
-m2 = .05;
-A = [ 1 t 0 0;
-      0 1 0 0;
-      0 0 1 t;
-      0 0 0 1];
-  B = [ t^2/(2*m1) 0 ; t/m1, 0;0, t^2/(2*m2);0, t/m2]
-  C = zeros(4);
-  D = B*0;
-  state = [0;0;0;0]
+A = [ 
 
 % intial and final positions in meters
 x2_i = [0.3;0.45];
