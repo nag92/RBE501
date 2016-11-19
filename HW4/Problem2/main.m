@@ -32,6 +32,7 @@ axis([0 70 -0.5 1.5])
 plot(p)
 plot(v)
 plot(a)
+sim('problem2')
 %pos = [0 ;O1(1); O2(1)];            
 %Y_links = [0 ;O1(2); O2(2)];
 %plot(Xlinks, Ylinks,'bd-')
