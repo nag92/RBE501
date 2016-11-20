@@ -12,8 +12,8 @@ A = [ 1 t 0 0;
       0 1 0 0;
       0 0 1 t;
       0 0 0 1];
-  B = [ t^2/(2*m1) 0 ; t/m1, 0;0, t^2/(2*m2);0, t/m2]
-  C = zeros(4);
+  B = [ t^2/(2) 0 ; t/1, 0;0, t^2/(2);0, t/1]
+  C = eye(4);
   D = B*0;
   state = [0;0;0;0]
 
@@ -28,22 +28,21 @@ y_path = planTraj(x2_i(2),x2_f(2),time);
 p = [];
 v = [];
 a = [];
-for t = 0:0.1:5
+[x,xd,xdd] = getKin(x_path,5);
+    [y,yd,ydd] = getKin(y_path,5)
+for t = 0:1:5
     [x,xd,xdd] = getKin(x_path,t);
     [y,yd,ydd] = getKin(y_path,t);
-    
-    p = [ p, sqrt( x*x + y*y)];
+    tau = [t;t];
+    state = A*state + B*tau
+    [theta1, theta2] = IK(x,y);
+    p = [ p, y];
     v = [ v, sqrt( xd*xd + yd*yd)];
     a = [ a, sqrt( xdd*xdd + ydd*ydd)];
 end
 
 hold on;
-axis([0 70 -0.5 1.5])
-plot(p)
-plot(v)
-plot(a)
+
 sim('problem2')
-%pos = [0 ;O1(1); O2(1)];            
-%Y_links = [0 ;O1(2); O2(2)];
-%plot(Xlinks, Ylinks,'bd-')
+run = 0:1:5plot(run,p,'bd-')
 
