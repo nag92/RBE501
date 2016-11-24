@@ -44,5 +44,6 @@ end
 hold on;
 
 sim('problem2')
-run = 0:1:5plot(run,p,'bd-')
+run = 0:1:5 
+plot(run,p,'bd-')
 
