@@ -45,4 +45,11 @@ A = [ 1, t1, t1^2, t1^3, t1^4, t1^5, t1^6, t1^7,t1^8,t1^9, t1^10,t1^11;...
 B = double([p0;0;0;p1;0;0;p2;0;0;p3;0;0]);
 % solve
 x = A\B
+time = 0:.01:3;
+coef = fliplr(x')
+y_list = polyval(coef, time)
+plot(time,y_list)
+xlabel('time (s)');
+ylabel('joint angle (rad)');
+title('Joint moving through way points')
 
