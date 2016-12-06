@@ -55,13 +55,3 @@ legend('O1_x','O1_y','O2_x','O2_y')
 hold off
 
 
-
-
-
-
-
-
-
-
-
-

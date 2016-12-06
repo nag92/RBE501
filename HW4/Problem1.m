@@ -42,14 +42,33 @@ A = [ 1, t1, t1^2, t1^3, t1^4, t1^5, t1^6, t1^7,t1^8,t1^9, t1^10,t1^11;...
       0,  1, 2*t4, 3*t4^2, 4*t4^3, 5*t4^4, 6*t4^5, 7*t4^6, 8*t4^7, 9*t4^8, 10*t4^9,11*t4^10;...
       0,  0, 2, 6*t4, 12*t4^2, 20*t4^3, 30*t4^4, 42*t4^5, 56*t4^6, 72*t4^7, 90*t4^8,110*t4^9]
 
-B = double([p0;0;0;p1;0;0;p2;0;0;p3;0;0]);
+B = [p0;0;0;p1;0;0;p2;0;0;p3;0;0];
 % solve
 x = A\B
 time = 0:.01:3;
-coef = fliplr(x')
-y_list = polyval(coef, time)
-plot(time,y_list)
+coef = fliplr(x');
+y_list = polyval(coef, time);
+plot(time,y_list);
 xlabel('time (s)');
 ylabel('joint angle (rad)');
-title('Joint moving through way points')
+title('Joint position')
+%%
+coef_v = coef(1:end-1).*[ 11,10,9,8,7,6,5,4,3,2,1];
+coef_a = coef_v(1:end-1).*[ 10,9,8,7,6,5,4,3,2,1];
+%%
+figure(2)
+y_list = polyval(coef_v, time);
+plot(time,y_list);
+xlabel('time (s)');
+ylabel('Velocity(rad/s)');
+title('Joint velocity')
+%%
+figure(3)
+y_list = polyval(coef_a, time);
+plot(time,y_list);
+xlabel('time (s)');
+ylabel('joint angle (rad/s^2)');
+title('Joint acceleration')
+%%
+
 
